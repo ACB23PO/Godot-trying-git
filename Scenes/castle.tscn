@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy20i3bd6cuby"]
+
+[ext_resource type="PackedScene" uid="uid://ckwij0hwacbug" path="res://Scenes/player.tscn" id="1_c60py"]
+[ext_resource type="Texture2D" uid="uid://bulmaiqvdeuqt" path="res://Textures/rock.png" id="2_vcsvh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qvqqu"]
+size = Vector2(32, 32)
+
+[node name="Castle" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_c60py")]
+position = Vector2(455, 278)
+
+[node name="Rock" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(456, 308)
+texture = ExtResource("2_vcsvh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Rock"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock/StaticBody2D"]
+shape = SubResource("RectangleShape2D_qvqqu")
+
+[node name="Rock2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(488, 308)
+texture = ExtResource("2_vcsvh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Rock2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock2/StaticBody2D"]
+shape = SubResource("RectangleShape2D_qvqqu")
+
+[node name="Rock3" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(424, 308)
+texture = ExtResource("2_vcsvh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Rock3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock3/StaticBody2D"]
+shape = SubResource("RectangleShape2D_qvqqu")
