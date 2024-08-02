@@ -1,22 +1,26 @@
 extends CharacterBody2D
 
-const move_speed := 80
-const jump_speed := 9999999
+var move_speed := 100
+var jump_speed := 200
+var in_air := false
 
-func jump(delta):
-	velocity += Vector2.UP * jump_speed * delta
+func jump():
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = -jump_speed
+		in_air = true
 
-func move(delta):
-	if Input.is_action_pressed("left"):
-		velocity += Vector2.LEFT * move_speed * delta
-	elif Input.is_action_pressed("right"):
-		velocity += Vector2.RIGHT * move_speed * delta
-	elif Input.is_action_just_pressed("jump"):
-		jump(delta)	
-	else:
-		velocity = Vector2.DOWN * 5000 * delta
+func move():
+	var direction := Input.get_axis("left", "right")
+	velocity.x = direction * move_speed
+
+	if !is_on_floor(): 
+		velocity.y += 9.8
+	elif is_on_floor() and !in_air: 
+		velocity.y = 0
 	
 	move_and_slide()
 
-func _physics_process(delta):
-	move(delta)
+
+func _physics_process(_delta):
+	move()
+	jump()

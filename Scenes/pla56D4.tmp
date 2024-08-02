@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckwij0hwacbug"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_5p451"]
+[ext_resource type="Texture2D" uid="uid://sxfjo5ad4itl" path="res://Textures/Beetle_spritesheet.png" id="1_b672n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_115h1"]
+size = Vector2(13, 21.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xoe3r"]
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 1
+script = ExtResource("1_5p451")
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_b672n")
+region_enabled = true
+region_rect = Rect2(8, 2, 16, 30)
+
+[node name="TopCollider" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -2.75)
+shape = SubResource("RectangleShape2D_115h1")
+
+[node name="BottomCollider" type="CollisionShape2D" parent="."]
+position = Vector2(1, 8)
+scale = Vector2(0.62, 0.62)
+shape = SubResource("CircleShape2D_xoe3r")
